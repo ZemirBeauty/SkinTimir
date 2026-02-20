@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinTimir Beauty - Emoji Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e75480;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .cart-btn {
+            background: #e75480;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 50px 60px 50px;
+            background: #f8c8dc;
+            margin-top: 70px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: #e75480;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 28px;
+            color: #e75480;
+        }
+
+        .products {
+            padding: 40px;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 10px;
+            width: 220px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card .emoji {
+            font-size: 60px;
+        }
+
+        .card h3 {
+            margin: 10px 0 5px;
+        }
+
+        .price {
+            color: #e75480;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-top: 8px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .buy {
+            background: #e75480;
+            color: white;
+        }
+
+        .cart {
+            background: #f8c8dc;
+        }
+
+        .cart-popup {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            background: white;
+            width: 360px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: none;
+            z-index: 999;
+        }
+
+        .cart-popup h3 {
+            margin-top: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .cart-item span {
+            margin: 0 5px;
+        }
+
+        .qty-btn {
+            background: #e75480;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .checkout-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #e75480;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        footer {
+            background: #e75480;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .about,
+        .contact {
+            padding: 60px 50px;
+        }
+
+        .about h2,
+        .contact h2 {
+            color: #e75480;
+            text-align: center;
+        }
+
+        .about p,
+        .contact p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px 12px;
+            width: 300px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 6px 12px;
+            background: #f8c8dc;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            color: #e75480;
+        }
+
+        .filter-btn.active {
+            background: #e75480;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">SkinTimir</div>
+        <ul>
+            <li><a onclick="scrollToSection('hero')">Home</a></li>
+            <li><a onclick="scrollToSection('productsSection')">Product</a></li>
+            <li><a onclick="scrollToSection('aboutSection')">About</a></li>
+            <li><a onclick="scrollToSection('contactSection')">Contact</a></li>
+        </ul>
+        <div class="cart-btn" onclick="toggleCart()">Cart 🛒</div>
+    </div>
+
+    <div class="cart-popup" id="cartBox">
+        <h3>Keranjang</h3>
+        <div id="cartItems"></div>
+        <div class="total">Total: Rp <span id="total">0</span></div>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <section class="hero" id="hero">
+        <div>
+            <h1>Reveal Your Natural Glow ✨</h1>
+            <p>Skincare premium, aman & BPOM</p>
+        </div>
+    </section>
+
+    <h2 class="section-title">Our Products</h2>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+    </div>
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+        <button class="filter-btn" onclick="filterCategory('cleanser', this)">Cleanser 🧴</button>
+        <button class="filter-btn" onclick="filterCategory('serum', this)">Serum 💧</button>
+        <button class="filter-btn" onclick="filterCategory('mask', this)">Mask 😷</button>
+        <button class="filter-btn" onclick="filterCategory('moisturizer', this)">Moisturizer 🧴</button>
+        <button class="filter-btn" onclick="filterCategory('lip', this)">Lip 💄</button>
+        <button class="filter-btn" onclick="filterCategory('sunscreen', this)">Sunscreen 🌞</button>
+    </div>
+    <section class="products" id="productsSection">
+        <div class="product-list" id="productContainer"></div>
+    </section>
+
+    <section class="about" id="aboutSection">
+        <h2>About SkinTimir</h2>
+        <p>SkinTimir adalah brand skincare premium yang fokus pada kesehatan kulit Anda. Semua produk aman, BPOM
+            approved, dan diformulasikan untuk berbagai jenis kulit.</p>
+    </section>
+
+    <section class="contact" id="contactSection">
+        <h2>Contact Us</h2>
+        <p>WhatsApp: <a href="https://wa.me/6288213121939" target="_blank">+62 882 1312 1939</a></p>
+        <p>Instagram: <a href="https://instagram.com/rrvndr__" target="_blank">@rrvndr__</a></p>
+        <p>Email: zemirbeauty@skintimir.com</p>
+    </section>
+
+    <footer>
+        <p>© 2026 SkinTimir Beauty</p>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "Brightening Facial Wash", price: 65000, category: "cleanser", emoji: "🧴" },
+            { name: "Hydrating Gel Cleanser", price: 70000, category: "cleanser", emoji: "🧴" },
+            { name: "Acne Control Foam", price: 68000, category: "cleanser", emoji: "🧴" },
+            { name: "Micellar Water", price: 72000, category: "cleanser", emoji: "🧴" },
+            { name: "Hydrating Toner", price: 85000, category: "serum", emoji: "💧" },
+            { name: "Pore Minimizer Toner", price: 88000, category: "serum", emoji: "💧" },
+            { name: "Vitamin C Essence", price: 120000, category: "serum", emoji: "💧" },
+            { name: "Niacinamide Essence", price: 115000, category: "serum", emoji: "💧" },
+            { name: "Niacinamide Serum", price: 120000, category: "serum", emoji: "💧" },
+            { name: "Vitamin C Serum", price: 135000, category: "serum", emoji: "💧" },
+            { name: "Hyaluronic Acid Serum", price: 140000, category: "serum", emoji: "💧" },
+            { name: "Retinol Serum", price: 150000, category: "serum", emoji: "💧" },
+            { name: "Acne Calming Serum", price: 115000, category: "serum", emoji: "💧" },
+            { name: "Glow Booster Serum", price: 130000, category: "serum", emoji: "💧" },
+            { name: "Daily Glow Moisturizer", price: 95000, category: "moisturizer", emoji: "🧴" },
+            { name: "Night Repair Cream", price: 105000, category: "moisturizer", emoji: "🧴" },
+            { name: "Oil-Free Moisturizer", price: 97000, category: "moisturizer", emoji: "🧴" },
+            { name: "Rich Hydrating Cream", price: 110000, category: "moisturizer", emoji: "🧴" },
+            { name: "Sunscreen SPF50 PA++++", price: 90000, category: "sunscreen", emoji: "🌞" },
+            { name: "Tinted Sunscreen", price: 95000, category: "sunscreen", emoji: "🌞" },
+            { name: "Mineral Sunscreen", price: 98000, category: "sunscreen", emoji: "🌞" },
+            { name: "Eye Cream", price: 110000, category: "moisturizer", emoji: "🧴" },
+            { name: "Dark Circle Corrector", price: 120000, category: "moisturizer", emoji: "🧴" },
+            { name: "Puffiness Reducer", price: 115000, category: "moisturizer", emoji: "🧴" },
+            { name: "Clay Mask", price: 80000, category: "mask", emoji: "😷" },
+            { name: "Peel-Off Mask", price: 85000, category: "mask", emoji: "😷" },
+            { name: "Exfoliating Serum", price: 125000, category: "serum", emoji: "💧" },
+            { name: "Enzyme Mask", price: 90000, category: "mask", emoji: "😷" },
+            { name: "Lip Balm", price: 45000, category: "lip", emoji: "💄" },
+            { name: "Lip Scrub", price: 50000, category: "lip", emoji: "💄" },
+            { name: "Hand Cream", price: 60000, category: "moisturizer", emoji: "🧴" },
+            { name: "Body Lotion", price: 95000, category: "moisturizer", emoji: "🧴" },
+            { name: "Spot Treatment Gel", price: 105000, category: "serum", emoji: "💧" },
+            { name: "Soothing Gel Mask", price: 90000, category: "mask", emoji: "😷" },
+            { name: "Collagen Mask", price: 130000, category: "mask", emoji: "😷" },
+            { name: "Brightening Night Mask", price: 120000, category: "mask", emoji: "😷" },
+            { name: "Repairing Face Oil", price: 140000, category: "serum", emoji: "💧" },
+            { name: "Calming Mist", price: 85000, category: "serum", emoji: "💧" },
+            { name: "Anti-Acne Patch", price: 50000, category: "mask", emoji: "😷" },
+            { name: "Glow Sheet Mask", price: 95000, category: "mask", emoji: "😷" },
+            { name: "Vitamin C Brightening Cream", price: 135000, category: "moisturizer", emoji: "🧴" }
+        ];
+
+        let cart = {};
+        let currentCategory = "all";
+
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        function toggleCart() { const box = document.getElementById("cartBox"); box.style.display = box.style.display === "block" ? "none" : "block"; }
+        function addToCart(name, price) { if (cart[name]) { cart[name].qty += 1; } else { cart[name] = { price: price, qty: 1 } } renderCart(); }
+        function changeQty(name, delta) { if (cart[name]) { cart[name].qty += delta; if (cart[name].qty <= 0) delete cart[name] } renderCart(); }
+        function renderCart() { let itemsHTML = "", total = 0; for (const name in cart) { const item = cart[name], subtotal = item.price * item.qty; total += subtotal; itemsHTML += `<div class="cart-item">${name} <button class="qty-btn" onclick="changeQty('${name}',-1)">-</button> <span>${item.qty}</span> <button class="qty-btn" onclick="changeQty('${name}',1)">+</button> <span>Rp ${subtotal}</span></div>` } document.getElementById("cartItems").innerHTML = itemsHTML; document.getElementById("total").innerText = total; }
+        function buyWA(name) { const nomor = "6281234567890"; const text = `Halo SkinTimir, saya mau beli ${name}`; window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(text)}`); }
+        function checkout() { const nomor = "6281234567890"; let text = "Halo SkinTimir, saya mau beli:\n"; for (const name in cart) { text += `${name} x${cart[name].qty}\n` } const total = Object.values(cart).reduce((a, b) => a + b.price * b.qty, 0); text += `Total: Rp ${total}`; window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(text)}`); }
+        function filterProducts() { const query = document.getElementById("searchInput").value.toLowerCase(); currentCategory = "all"; renderProducts(query); }
+        function filterCategory(cat, btn) { currentCategory = cat; document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active")); btn.classList.add("active"); renderProducts(); }
+        function renderProducts(query = "") { const container = document.getElementById("productContainer"); container.innerHTML = ""; products.forEach(p => { if ((currentCategory === "all" || p.category === currentCategory) && p.name.toLowerCase().includes(query)) { const card = document.createElement("div"); card.className = "card"; card.innerHTML = `<div class="emoji">${p.emoji}</div><h3>${p.name}</h3><p class="price">Rp ${p.price}</p><button class="btn buy" onclick="buyWA('${p.name}')">Buy</button><button class="btn cart" onclick="addToCart('${p.name}',${p.price})">Add Cart</button>`; container.appendChild(card) } }); }
+
+        renderProducts();
+    </script>
+</body>
+
+</html>
